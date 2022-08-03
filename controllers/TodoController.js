@@ -22,3 +22,11 @@ module.exports.deleteToDo = (req, res) => {
         .then(() => res.set(201).send("Deleted Successfully..."))
         .catch((err) => console.log(err));
 }
+module.exports.updateToDo = (req, res) => {
+    const { _id, text } = req.body;
+
+    ToDoModel
+        .findByIdAndUpdate(_id, { text })
+        .then(() => res.set(201).send("Updated Successfully..."))
+        .catch((err) => console.log(err));
+}
