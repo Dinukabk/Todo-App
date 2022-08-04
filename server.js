@@ -1,3 +1,4 @@
+
 const express = require("express");
 
 const mongoose = require("mongoose");
@@ -5,6 +6,7 @@ require("dotenv").config();
 
 const cors = require("cors");
 
+const routes = require("./routes/TodoRoute");
 
 
 const app = express();
@@ -22,7 +24,7 @@ mongoose
     .catch((err) => console.error(err));
 
 
-
+// Routes
 app.use(routes);
 
 app.listen(PORT, () => console.log("Server running on port " + PORT));

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
 
-import './app.css';
+import './App.css';
 import Item from './components/Item'
 
 function App() {
@@ -15,6 +15,15 @@ function App() {
       .then((res) => setTodo(res.data))
       .catch((err) => console.log(err));
   })
+  addFavorite = favorite => {
+    const { favorites } = this.state;
+
+    if (!favorites.some(alreadyFavorite => alreadyFavorite.id == favorite.id)) {
+      this.setState({
+        favorites: [...this.state.favorites, favorite]
+      });
+    }
+  };
 
   const addUpdateTodo = () => {
 
@@ -50,7 +59,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h1>ToDo App</h1>
+        <h1>ToDo Application For Interview Selection</h1>
         <div className="top">
           <input
             type="text"
@@ -66,8 +75,11 @@ function App() {
             key={item._id}
             text={item.text}
             remove={() => deleteTodo(item._id)}
-            update={() => updateTodo(item._id, item.text)} />)}
+            update={() => updateTodo(item._id, item.text)}
+            favorite={() => addFavorite(item._id, favorite.id)} />)}
+            
         </div>
+        
 
       </div>
     </div>
