@@ -85,5 +85,22 @@ function App() {
     </div>
   );
 }
-
+render() 
+  return (
+    <Router>
+      <Switch>
+    <Route
+      path="/"
+      exact
+      render={() => (
+        <UserList list={this.state.list} addFavorite={this.addFavorite} />
+      )}
+    />
+    <Route
+      path="/favorites"
+      render={() => <FavoriteList favorites={this.state.favorites} />}
+    />
+  </Switch>
+</Router>
+);
 export default App;
